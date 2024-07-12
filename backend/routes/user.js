@@ -14,8 +14,8 @@ const signupBody = zod.object({
 })
 
 router.post("/signup", async (req, res) => {
-    const {username, password, firstName, lastName} = req.body;
-    console.log(username, password, firstName, lastName);
+    // const {username, password, firstName, lastName} = req.body;
+    // console.log(username, password, firstName, lastName);
     const { success } = signupBody.safeParse(req.body);
     if(!success) {
         res.status(411).json({
@@ -98,19 +98,30 @@ const updateUserBody = zod.object({
 
 router.put("/update", authMiddleware, async (req, res) => {
     const { success } = updateUserBody.safeParse(req.body);
-    if(!success) {
+    if (!success) {
         return res.status(411).json({
             message: "Error while updating the information"
         });
     }
 
-    await User.updateOne(req.body, {
-        _id: req.userID
-    })
+    try {
+        await User.updateOne(
+            { _id: req.userID }, // filter criteria
+            { $set: req.body }   // update object
+        );
 
-    res.status(201).json({
-        message: "Updated Successfully"
-    })
+        const updatedUser = await User.findById(req.userID);
+
+        res.status(201).json({
+            message: "Updated Successfully",
+            username: updatedUser.firstName // send required user data
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Error updating user",
+            error: error.message,
+        });
+    }
 })
 
 router.get("/bulk", async (req, res) => {
@@ -131,10 +142,10 @@ router.get("/bulk", async (req, res) => {
     
         res.json({
             user: users.map(user => ({
-                // username: user.username,
+                username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                // _id: user._id,
+                _id: user._id,
             }))
         })
     } catch (err) {
@@ -144,5 +155,28 @@ router.get("/bulk", async (req, res) => {
         })
     }
 })
+
+router.get("/users", authMiddleware, async (req, res) => {
+    try {
+        // Fetch all users except the currently signed-in user
+        const users = await User.find({ _id: { $ne: req.userID } });
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching users", error: error.message });
+    }
+});
+router.get('/profile', authMiddleware, async (req, res) => {
+    try {
+        // Fetch user details based on req.userID (assumed to be stored in the JWT token)
+        const user = await User.findById(req.userID).select('-password'); // Exclude password field from response
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
 
 module.exports = router;

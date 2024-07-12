@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 
-export const User = ({ user }) => {
+export const User = ({ user, userId }) => {
     const navigate = useNavigate();
 
     return(
@@ -20,7 +20,7 @@ export const User = ({ user }) => {
             </div>
             <div className="flex justify-center">
                 <Button onClick={() => {
-                    navigate("/send?id=" + user._id + "&name=" + user.firstName);
+                    navigate(`/send?id=${user._id}&name=${user.firstName}`);
                 }} label={"Send Money"}/>
             </div>
         </div>

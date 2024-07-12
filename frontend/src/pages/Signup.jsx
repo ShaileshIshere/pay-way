@@ -17,14 +17,14 @@ export const Signup = () => {
 
     const handleSignup = async () => {
         try {
-            console.log("Attempting to sign up");
+            // console.log("Attempting to sign up");
             const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
                 username,
                 firstName,
                 lastName,
                 password
             });
-            console.log("Signup successful", response.data.token);
+            // console.log("Signup successful", response.data.token);
             localStorage.setItem("token", response.data.token);
             navigate("/dashboard");
         } catch (error) {

@@ -6,8 +6,8 @@ export const Dashboard = () => {
 
     return(
         <div className="">
-            <Appbar label={"shailesh"} />
-            <Balance label={"10000"} />
+            <Appbar />
+            <Balance />
             <UserComponent />
         </div>
     )
