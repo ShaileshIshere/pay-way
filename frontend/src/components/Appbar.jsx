@@ -9,7 +9,7 @@ export const Appbar = () => {
             try {
                 const token = localStorage.getItem('token');
                 const response = await axios.put(
-                    "http://localhost:3000/api/v1/user/update",
+                    "http://localhost:3000/api/v1/user/update", "https://pay-way-api.vercel.app/api/v1/user/update"
                     {}, // empty body since we're just fetching data
                     {
                         headers: {

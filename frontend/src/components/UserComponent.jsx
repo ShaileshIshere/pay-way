@@ -10,7 +10,7 @@ export const UserComponent = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`);
+                const response = await axios.get(`https://pay-way-api.vercel.app/api/v1/user/bulk?filter=${filter}`);
                 setUsers(response.data.user);
             } catch (error) {
                 console.error("Error fetching users:", error);
@@ -23,7 +23,7 @@ export const UserComponent = () => {
         const fetchUsers = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get("http://localhost:3000/api/v1/user/users", {
+                const response = await axios.get("https://pay-way-api.vercel.app/api/v1/user/users", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -40,7 +40,7 @@ export const UserComponent = () => {
         const fetchLoggedInUser = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get("http://localhost:3000/api/v1/user/profile", {
+                const response = await axios.get("https://pay-way-api.vercel.app/api/v1/user/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
