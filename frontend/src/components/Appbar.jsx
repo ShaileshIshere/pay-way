@@ -9,7 +9,7 @@ export const Appbar = () => {
             try {
                 const token = localStorage.getItem('token');
                 const response = await axios.put(
-                    "http://localhost:3000/api/v1/user/update", "https://pay-way-api.vercel.app/api/v1/user/update"
+                    "https://pay-way-api.vercel.app/api/v1/user/update",
                     {}, // empty body since we're just fetching data
                     {
                         headers: {
@@ -28,8 +28,9 @@ export const Appbar = () => {
 
     return(
         <div className="flex justify-between items-center space-between px-12 py-5 bg-neutral-200">
-            <div className="cursor-pointer text-2xl subpixel-antialiased font-medium tracking-tight">
-                PayWay App
+            <div className="cursor-pointer text-2xl subpixel-antialiased font-medium tracking-tight flex">
+                <img src="/newFavicon.png" alt="falcon" style={{ width: '32px', height: '32px', marginRight: '10px' }} />
+                Pay-Way
             </div>
             <div className="flex">
                 <div className="cursor-default flex flex-col justify-center mr-3 text-xl subpixel-antialiased font-normal tracking-tight">
