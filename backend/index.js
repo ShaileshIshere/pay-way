@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors(
     {
-        origin: "https://pay-way-client.vercel.app",
+        origin: ["https://pay-way-client.vercel.app"],
         methods: ["POST", "GET", "PUT"],
         credentials: true
     }
