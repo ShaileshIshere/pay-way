@@ -13,7 +13,7 @@
 
 **Server Side:**
 
-- ** Node.js and Express**: Fast and scalable backend framework
+- **Node.js and Express**: Fast and scalable backend framework
 
 - **MongoDB**: Flexible and scalable NoSQL database.
 
