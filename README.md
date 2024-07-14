@@ -3,6 +3,15 @@
 
 ## Tech stacks and their Features 
 
+| No. | Tech stack | Features | 
+| -------- | -------- | -------- | 
+|1. | JWT, Middleware | Secure authentication and authorization |
+|2. | MongoDB, Mongoose | Efficient database interaction |
+|3. | React-Router | Seamless navigation across multiple pages |
+|4. | Recoil | Simplified state management |
+|5. | Tailwind | Rapid and customizable styling |
+|6. | Deployment | Easy and fast deployment with Vercel |
+
 **Client Side:**
 
 - **React**: Building dynamic user interfaces.
@@ -18,15 +27,6 @@
 - **MongoDB**: Flexible and scalable NoSQL database.
 
 - **Mongoose**: Elegant MongoDB object modeling for Node.js.
-
-| No. | Tech stack | Features | 
-| -------- | -------- | -------- | 
-|1. | JWT, Middleware | Secure authentication and authorization |
-|2. | MongoDB, Mongoose | Efficient database interaction |
-|3. | React-Router | Seamless navigation across multiple pages |
-|4. | Recoil | Simplified state management |
-|5. | Tailwind | Rapid and customizable styling |
-|6. | Deployment | Easy and fast deployment with Vercel |
 
 ## Why Choose Pay-Way?
 - **User Friendly**: Intuitive interface for hassle-free transactions.
